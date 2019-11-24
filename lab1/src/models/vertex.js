@@ -1,3 +1,6 @@
+/**
+ * Вершина.
+ */
 class Vertex {
     constructor (x, y, z) {
         this.x = x;

@@ -1,3 +1,7 @@
+/**
+ * Позиция.
+ * Является оберткой над Vertex.
+ */
 class Position {
     constructor(x, y, z) {
        this.vertex = new Vertex(x, y, z); 
