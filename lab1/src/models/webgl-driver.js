@@ -199,7 +199,8 @@ let WEBGL_DRIVER = {
     },
 
     /**
-     * Передает матрицу проекции и матрицу модели и вида в JS-код из шейдеров.
+     * Инициализирует поля программы шейдеров (uniform-переменные) объектами JS,
+     * соответствующими матрице проекции и матрице модели.
      */
     _setMatrixUniforms: function () {
         gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
