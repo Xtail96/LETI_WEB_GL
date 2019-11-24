@@ -1,6 +1,5 @@
 class Figure {
     constructor(positionFromZero, vertices) {
-        console.log('create figure');
         this.positionFromZero = positionFromZero;
         this.vertices = vertices;
         this.buffer = WEBGL_DRIVER.initBuffer(Figure.getVerticesAsArray(this.vertices));
@@ -18,10 +17,7 @@ class Figure {
         let result = [];
 
         for(let vertex of vertices) {
-            //result.push(...[vertex.getX(), vertex.getY(), vertex.getZ()]);
-            result.push(vertex.getX());
-            result.push(vertex.getY());
-            result.push(vertex.getZ());
+            result.push(...[vertex.getX(), vertex.getY(), vertex.getZ()]);
         }
 
         return result;

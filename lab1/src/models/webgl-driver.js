@@ -21,54 +21,22 @@ let WEBGL_DRIVER = {
     },
 
     initBuffer: function(vertices) {
-        let buffer = WEBGL_DRIVER.createEmptyBuffer();
-        WEBGL_DRIVER.setCurrentArrayBuffer(buffer);
-        WEBGL_DRIVER.fillBuffer(vertices);
-        //WEBGL_DRIVER.resetCurrentBuffer();
+        let buffer = this._createEmptyBuffer();
+        this._setCurrentArrayBuffer(buffer);
+        this._fillBuffer(vertices);
+        this._resetCurrentBuffer();
 
         return buffer;
     },
 
-    createEmptyBuffer: function() {
-        console.log('create empty buffer')
-        return gl.createBuffer();
-    },
-
-    setCurrentArrayBuffer: function(buffer) {
-        console.log('set current buffer', buffer)
-        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    },
-
-    fillBuffer: function(vertices) {
-        console.log('fill', vertices)
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    },
-
-    resetCurrentBuffer: function() {
-        console.log('reset')
-        if(tmpBuffer === undefined) {
-            tmpBuffer = WEBGL_DRIVER.createEmptyBuffer();
-        }
-        WEBGL_DRIVER.setCurrentArrayBuffer(tmpBuffer);
-    },
-
-    setCurrentPosition(positionFromZero) {
-        //mat4.identity(mvMatrix);
-        mat4.translate(mvMatrix, positionFromZero.getCoords());
-        //mat4.translate(mvMatrix, positionFromZero.getReversedCoords());
-
-        //console.log(positionFromZero.getCoords(), positionFromZero.getReversedCoords());
-    },
-
     drawFigure: function(figure) {
-        WEBGL_DRIVER.setCurrentPosition(figure.getPositionFromZero());
-        WEBGL_DRIVER.setCurrentArrayBuffer(figure.getBuffer());
-        //gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, figure.getVertexSize(), gl.FLOAT, false, 0, 0);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0);
-        WEBGL_DRIVER._setMatrixUniforms();
-        console.log('draw', figure.getVerticesCount(), figure.getVertexSize(), figure, Figure.getVerticesAsArray(figure.getVertices()))
-        gl.drawArrays(gl.TRIANGLES, 0, figure.getVerticesCount());
-        //WEBGL_DRIVER.resetCurrentBuffer();
+        this._setCurrentPosition(figure.getPositionFromZero());
+        this._setCurrentArrayBuffer(figure.getBuffer());
+        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, figure.getVertexSize(), gl.FLOAT, false, 0, 0);
+        this._setMatrixUniforms();
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, figure.getVerticesCount());
+        this._resetCurrentBuffer();
+        this._setCurrentPositionToZero();
     },
 
     //private
@@ -142,33 +110,35 @@ let WEBGL_DRIVER = {
         return shader;
     },
 
-    /*_initBuffers: function() {
-        triangleVertexPositionBuffer = gl.createBuffer();
-        WEBGL_DRIVER.setCurrentArrayBuffer(triangleVertexPositionBuffer);
-        let vertices = [
-            0.0,  1.0,  0.0,
-            -1.0, -1.0,  0.0,
-            1.0, -1.0,  0.0
-        ];
+    _createEmptyBuffer: function() {
+        return gl.createBuffer();
+    },
+
+    _setCurrentArrayBuffer: function(buffer) {
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    },
+
+    _fillBuffer: function(vertices) {
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-        triangleVertexPositionBuffer.itemSize = 3;
-        triangleVertexPositionBuffer.numItems = 3;
-    
-        squareVertexPositionBuffer = gl.createBuffer();
-        WEBGL_DRIVER.setCurrentArrayBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
-        vertices = [
-            1.0,  1.0,  0.0,
-            -1.0,  1.0,  0.0,
-            1.0, -1.0,  0.0,
-            -1.0, -1.0,  0.0
-        ];
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-        squareVertexPositionBuffer.itemSize = 3;
-        squareVertexPositionBuffer.numItems = 4;
-    },*/
+    },
+
+    _resetCurrentBuffer: function() {
+        if(tmpBuffer === undefined) {
+            tmpBuffer = this._createEmptyBuffer();
+        }
+        this._setCurrentArrayBuffer(tmpBuffer);
+    },
+
+    _setCurrentPosition(positionFromZero) {
+        this._setCurrentPositionToZero();
+        mat4.translate(mvMatrix, positionFromZero.getCoords());
+    },
+
+    _setCurrentPositionToZero() {
+        mat4.identity(mvMatrix);
+    },
 
     _setMatrixUniforms: function () {
-        console.log('uniform');
         gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
         gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
     }
