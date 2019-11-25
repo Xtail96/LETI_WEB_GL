@@ -4,24 +4,38 @@ function init(canvas_node_id) {
 }
 
 function update() {
+    requestAnimFrame(update);
+
     WEBGL_DRIVER.resetScene();
-    let container = document.getElementById('vertexColors');
-    container.innerHTML = '';
 
     SHAPES_REPOSITORY.data.forEach((figure) => {
         figure.draw();
     });
 
-    setupUI();
+    animate();
+}
+
+let lastTime = 0;
+function animate() {
+    let timeNow = new Date().getTime();
+    if (lastTime != 0) {
+        let elapsed = timeNow - lastTime;
+
+        SHAPES_REPOSITORY.data[0].angle += (90 * elapsed) / 1000.0;
+        SHAPES_REPOSITORY.data[1].angle += (75 * elapsed) / 1000.0;
+    }
+    lastTime = timeNow;
 }
 
 function main(canvas_node_id) {
     init(canvas_node_id);
     update();
+    setupUI();
 }
 
 function setupUI() {
     let container = document.getElementById('vertexColors');
+    container.innerHTML = '';
 
     createVertexColorNode = function(figure, figureIndex) {
         let vertexIndex = 0;

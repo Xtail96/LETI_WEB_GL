@@ -12,7 +12,8 @@ let SHAPES_REPOSITORY = {
                     new Vertex(0.0,  1.0,  0.0, new Color(1.0, 0.0, 0.0, 1.0)),
                     new Vertex(-1.0, -1.0,  0.0, new Color(0.0, 1.0, 0.0, 1.0)),
                     new Vertex(1.0, -1.0,  0.0, new Color(0.0, 0.0, 1.0, 1.0))
-                ]
+                ],
+                0
             ),
             new Figure(
                 new Position(1.5, 0.0, -5.0),
@@ -21,7 +22,8 @@ let SHAPES_REPOSITORY = {
                     new Vertex(-1.0,  1.0, 0.0, new Color(0.0, 1.0, 1.0, 1.0)),
                     new Vertex(1.0, -1.0, 0.0, new Color(0.0, 1.0, 0.0, 1.0)),
                     new Vertex(-1.0, -1.0, 0.0, new Color(0.0, 1.0, 1.0, 1.0))
-                ]
+                ],
+                0
             ),
             new Figure(
                 new Position(0.0, -3.0, -14.0),
@@ -30,7 +32,8 @@ let SHAPES_REPOSITORY = {
                     new Vertex(-1.1,  1.1,  -1.1, new Color(1.0, 1.0, 1.0, 1.0)),
                     new Vertex(1.1, -1.1,  -1.1, new Color(1.0, 1.0, 0.0, 1.0)),
                     new Vertex(-1.1, -1.1,  -1.1, new Color(1.0, 1.0, 1.0, 1.0))
-                ]
+                ],
+                0
             )
         ];
     }

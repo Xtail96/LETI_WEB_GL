@@ -6,6 +6,7 @@ let shaderProgram;
 
 // Модельно-видовая матрица.
 let mvMatrix = mat4.create();
+let mvMatrixStack = [];
 
 // Проекционная матрица.
 let pMatrix = mat4.create();
@@ -72,6 +73,10 @@ let WEBGL_DRIVER = {
      */
     drawFigure: function(figure) {
         this._setCurrentPosition(figure.getPositionFromZero());
+
+        this._mvMatrixPush();
+        mat4.rotate(mvMatrix, UTILS.degToRad(figure.getAngle()), [0, 1, 0])
+
         this._setCurrentArrayBuffer(figure.getVertexBuffer());
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, Position.size(), gl.FLOAT, false, 0, 0);
         
@@ -80,6 +85,8 @@ let WEBGL_DRIVER = {
         
         this._setMatrixUniforms();
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, figure.getVerticesCount());
+
+        this._mvMatrixPop();
         
         this._resetCurrentBuffer();
         this._setCurrentPositionToZero();
@@ -237,5 +244,18 @@ let WEBGL_DRIVER = {
     _setMatrixUniforms: function () {
         gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
         gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
+    },
+
+    _mvMatrixPush: function() {
+        let copy = mat4.create();
+        mat4.set(mvMatrix, copy);
+        mvMatrixStack.push(copy);
+    },
+
+    _mvMatrixPop: function() {
+        if (mvMatrixStack.length == 0) {
+            throw "Matrix stack is empty";
+        }
+        mvMatrix = mvMatrixStack.pop();
     }
 }

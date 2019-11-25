@@ -6,13 +6,13 @@ class Figure {
      * Конструктор класса.
      * @param {Position} positionFromZero - позиция фигуры относительно нуля.
      * @param {Array<Vertex>} vertices - массив координат вершин.
-     * @param {Color} color - цвет вершины.
      */
-    constructor(positionFromZero, vertices, color) {
+    constructor(positionFromZero, vertices, angle) {
         this.positionFromZero = positionFromZero;
         this.vertices = vertices;
         this.vertexBuffer = undefined;
         this.colorBuffer = undefined;
+        this.angle = UTILS.degToRad(angle);
     }
 
     /**
@@ -46,6 +46,10 @@ class Figure {
      */
     getVerticesCount() {
         return this.vertices.length;
+    }
+
+    getAngle() {
+        return this.angle;
     }
 
     /**
