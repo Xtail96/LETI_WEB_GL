@@ -13,6 +13,8 @@ let pMatrix = mat4.create();
 // Временный буфер.
 let tmpBuffer = undefined;
 
+let BUFFER_TYPE = {vertex : 0, color: 1};
+
 /**
  * Драйвер WebGL.
  */
@@ -39,12 +41,22 @@ let WEBGL_DRIVER = {
 
     /**
      * Иницаилизирует вершинный буфер.
-     * @param {Array<Vertex>} vertices - массив вершин.
+     * @param {Array<any>} vertices - массив вершин.
      */
-    initBuffer: function(vertices) {
+    initBuffer: function(vertices, type) {
         let buffer = this._createEmptyBuffer();
+
         this._setCurrentArrayBuffer(buffer);
-        this._fillBuffer(vertices);
+
+        switch(type) {
+            case BUFFER_TYPE.vertex:
+                this._fillVertexBuffer(vertices);
+                break;
+            case BUFFER_TYPE.color:
+                this._fillColorBuffer(vertices);
+                break;
+        }
+        
         this._resetCurrentBuffer();
 
         return buffer;
@@ -56,10 +68,15 @@ let WEBGL_DRIVER = {
      */
     drawFigure: function(figure) {
         this._setCurrentPosition(figure.getPositionFromZero());
-        this._setCurrentArrayBuffer(figure.getBuffer());
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, figure.getVertexSize(), gl.FLOAT, false, 0, 0);
+        this._setCurrentArrayBuffer(figure.getVertexBuffer());
+        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, Position.size(), gl.FLOAT, false, 0, 0);
+        
+        this._setCurrentArrayBuffer(figure.getColorBuffer());
+        gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, Color.size(), gl.FLOAT, false, 0, 0);
+        
         this._setMatrixUniforms();
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, figure.getVerticesCount());
+        
         this._resetCurrentBuffer();
         this._setCurrentPositionToZero();
     },
@@ -102,6 +119,9 @@ let WEBGL_DRIVER = {
     
         shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
         gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
+
+        shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aVertexColor");
+        gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
     
         shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
         shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
@@ -167,8 +187,16 @@ let WEBGL_DRIVER = {
      * Заполняет буфер данными о вершинах.
      * @param {Array<Vertex>} vertices - вершины.
      */
-    _fillBuffer: function(vertices) {
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Figure.getVerticesAsArray(this.vertices)), gl.STATIC_DRAW);
+    _fillVertexBuffer: function(vertices) {
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Figure.joinVerticesPositions(vertices)), gl.STATIC_DRAW);
+    },
+
+    /**
+     * Заполняет буфер данными о цвете.
+     * @param {Array<Color>} vertices - вершины.
+     */
+    _fillColorBuffer: function(vertices) {
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Figure.joinVerticesColors(vertices)), gl.STATIC_DRAW);
     },
 
     /**

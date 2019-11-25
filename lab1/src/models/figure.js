@@ -6,11 +6,13 @@ class Figure {
      * Конструктор класса.
      * @param {Position} positionFromZero - позиция фигуры относительно нуля.
      * @param {Array<Vertex>} vertices - массив координат вершин.
+     * @param {Color} color - цвет вершины.
      */
-    constructor(positionFromZero, vertices) {
+    constructor(positionFromZero, vertices, color) {
         this.positionFromZero = positionFromZero;
         this.vertices = vertices;
-        this.buffer = WEBGL_DRIVER.initBuffer(vertices);
+        this.vertexBuffer = WEBGL_DRIVER.initBuffer(vertices, BUFFER_TYPE.vertex);
+        this.colorBuffer = WEBGL_DRIVER.initBuffer(vertices, BUFFER_TYPE.color);
     }
 
     /**
@@ -29,18 +31,14 @@ class Figure {
     }
  
     /**
-     * Возвращает буфер фигуры - место в памяти видеокарты.
+     * Возвращает вершинный буфер фигуры - место в памяти видеокарты.
      */
-    getBuffer() {
-        return this.buffer;
+    getVertexBuffer() {
+        return this.vertexBuffer;
     }
 
-    /**
-     * Возвращает размер каждой вершин фигуры.
-     * Всегда равен 3.
-     */
-    getVertexSize() {
-        return Vertex.size();
+    getColorBuffer() {
+        return this.colorBuffer;
     }
 
     /**
@@ -58,13 +56,23 @@ class Figure {
     }
 
     /**
-     * Возвращает вершины фигуры в виде плоского массива.
+     * Возвращает вершины фигуры в виде одномерного массива.
      */
-    static getVerticesAsArray(vertices) {
+    static joinVerticesPositions(vertices) {
         let result = [];
 
         for(let vertex of vertices) {
-            result.push(...[vertex.getX(), vertex.getY(), vertex.getZ()]);
+            result.push(...vertex.getCoords());
+        }
+
+        return result;
+    }
+
+    static joinVerticesColors(vertices) {
+        let result = [];
+
+        for(let vertex of vertices) {
+            result.push(...vertex.getColorCode());
         }
 
         return result;

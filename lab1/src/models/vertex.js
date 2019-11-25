@@ -2,34 +2,17 @@
  * Вершина.
  */
 class Vertex {
-    constructor (x, y, z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    constructor (x, y, z, color) {
+        this.position = new Position(x, y, z);
+        this.color = color;
     }
 
-    getX() {
-        return this.x;
+    getCoords() {
+        return this.position.getCoords();
     }
 
-    setX(value) {
-        this.x = value;
-    }
-
-    getY() {
-        return this.y;
-    }
-
-    setY(value) {
-        this.y = value;
-    }
-
-    getZ() {
-        return this.z;
-    }
-
-    setZ(value) {
-        this.z = value;
+    getColorCode() {
+        return this.color.getColorCode();
     }
 
     static size() {
