@@ -11,8 +11,8 @@ class Figure {
     constructor(positionFromZero, vertices, color) {
         this.positionFromZero = positionFromZero;
         this.vertices = vertices;
-        this.vertexBuffer = WEBGL_DRIVER.initBuffer(vertices, BUFFER_TYPE.vertex);
-        this.colorBuffer = WEBGL_DRIVER.initBuffer(vertices, BUFFER_TYPE.color);
+        this.vertexBuffer = undefined;
+        this.colorBuffer = undefined;
     }
 
     /**
@@ -52,6 +52,8 @@ class Figure {
      * Рисует фигуру на холсте, который использует драйвер.
      */
     draw() {
+        this.vertexBuffer = WEBGL_DRIVER.initBuffer(this.vertices, BUFFER_TYPE.vertex);
+        this.colorBuffer = WEBGL_DRIVER.initBuffer(this.vertices, BUFFER_TYPE.color);
         WEBGL_DRIVER.drawFigure(this);
     }
 

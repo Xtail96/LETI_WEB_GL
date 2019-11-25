@@ -29,7 +29,11 @@ let WEBGL_DRIVER = {
         let canvas = document.getElementById(canvas_id);
         WEBGL_DRIVER._initContext(canvas);
         WEBGL_DRIVER._initShaders();
-    
+
+        this.resetScene();
+    },
+
+    resetScene() {
         gl.clearColor(0.0, 0.0, 0.0, 1.0);
         gl.enable(gl.DEPTH_TEST);
 
