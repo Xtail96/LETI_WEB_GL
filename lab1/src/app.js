@@ -49,8 +49,6 @@ function setupUI() {
 }
 
 function colorChanged(node_id, value) {
-    console.log(node_id, value);
-
     let meta = node_id.split('_');
 
     let figureIndex = meta[1];

@@ -26,9 +26,9 @@ let SHAPES_REPOSITORY = {
             new Figure(
                 new Position(0.0, -3.0, -14.0),
                 [
-                    new Vertex(1.1,  1.1,  -1.1, new Color(1.0, 1.0, 1.0, 1.0)),
+                    new Vertex(1.1,  1.1,  -1.1, new Color(1.0, 1.0, 0.0, 1.0)),
                     new Vertex(-1.1,  1.1,  -1.1, new Color(1.0, 1.0, 1.0, 1.0)),
-                    new Vertex(1.1, -1.1,  -1.1, new Color(1.0, 1.0, 1.0, 1.0)),
+                    new Vertex(1.1, -1.1,  -1.1, new Color(1.0, 1.0, 0.0, 1.0)),
                     new Vertex(-1.1, -1.1,  -1.1, new Color(1.0, 1.0, 1.0, 1.0))
                 ]
             )
