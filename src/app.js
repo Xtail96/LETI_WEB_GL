@@ -23,6 +23,7 @@ function animate() {
 
         SHAPES_REPOSITORY.data[0].angle += (90 * elapsed) / 1000.0;
         SHAPES_REPOSITORY.data[1].angle += (75 * elapsed) / 1000.0;
+        SHAPES_REPOSITORY.data[2].angle += (75 * elapsed) / 1000.0;
         SHAPES_REPOSITORY.data[3].angle += (85 * elapsed) / 1000.0;
     }
     lastTime = timeNow;

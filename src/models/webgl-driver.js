@@ -16,6 +16,8 @@ let tmpBuffer = undefined;
 
 let BUFFER_TYPE = {vertex : 0, color: 1};
 
+let DRAWING_TYPE = {STRIP: 0, FAN: 1};
+
 /**
  * Драйвер WebGL.
  */
@@ -84,7 +86,16 @@ let WEBGL_DRIVER = {
         gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, Color.size(), gl.FLOAT, false, 0, 0);
         
         this._setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, figure.getVerticesCount());
+
+        switch (figure.getDrawingType()) {
+            case DRAWING_TYPE.STRIP:
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, figure.getVerticesCount());
+                break;
+            case DRAWING_TYPE.FAN:
+                gl.drawArrays(gl.TRIANGLE_FAN, 0, figure.getVerticesCount());
+                break;
+        }
+        
 
         this._mvMatrixPop();
         

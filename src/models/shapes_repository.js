@@ -25,67 +25,78 @@ let SHAPES_REPOSITORY = {
                     new Vertex(-1.0, -1.0, -1.0, new Color(0.0, 1.0, 0.0, 1.0)),
                     new Vertex(-1.0, -1.0,  1.0, new Color(0.0, 0.0, 1.0, 1.0))
                 ],
+                0,
                 0
             ),
 
+            // begin cube
             new Figure(
-                new Position(1.5, 0.0, -5.0),
+                new Position(1.5, -0.5, -5.0),
                 [
-                    new Vertex(1.0,  1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)), //1
-                    new Vertex(-1.0,  1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)), //2
-                    new Vertex(1.0, -1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)), //3
-                    new Vertex(-1.0, -1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)), //4
+                    new Vertex(0.0,  0.0,  0.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(1.0,  0.0,  0.0, new Color(1.0, 0.0, 0.0, 1.0)),
+                    new Vertex(1.0,  1.0,  0.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(0.0,  1.0,  0.0, new Color(1.0, 0.0, 0.0, 1.0)),
 
-                    new Vertex(-1.0,  -1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(-1.0,  -1.0,  -1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(-1.0, 1.0,  -1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(1.0, -1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-
-                    new Vertex(1.0,  -1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(1.0,  1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(1.0, 1.0,  -1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(-1.0, -1.0,  -1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-
-                    new Vertex(-1.0,  1.0,  -1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(-1.0,  -1.0,  -1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(1.0, -1.0,  -1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(1.0, 1.0,  -1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-
-                    new Vertex(1.0,  1.0,  -1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(1.0,  -1.0,  -1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(1.0, 1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(-1.0, -1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-
-                    new Vertex(-1.0,  -1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(-1.0,  -1.0,  -1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(-1.0, 1.0,  -1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-                    new Vertex(1.0, -1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)),
-
-                    /*new Vertex(-1.0, -1.0, -1.0, new Color(0.0, 1.0, 0.0, 1.0)),
-                    new Vertex(-1.0,  1.0, -1.0, new Color(0.0, 1.0, 0.0, 1.0)),
-                    new Vertex(1.0,  1.0, -1.0, new Color(0.0, 1.0, 0.0, 1.0)),
-                    new Vertex(1.0, -1.0, -1.0, new Color(0.0, 1.0, 0.0, 1.0)),*/
-
-                    /*new Vertex(-1.0,  1.0, -1.0, new Color(0.0, 0.0, 1.0, 1.0)),
-                    new Vertex(-1.0,  1.0,  1.0, new Color(0.0, 0.0, 1.0, 1.0)),
-                    new Vertex(1.0,  1.0,  1.0, new Color(0.0, 0.0, 1.0, 1.0)),
-                    new Vertex(1.0,  1.0, -1.0, new Color(0.0, 0.0, 1.0, 1.0)),
-
-                    new Vertex(-1.0, -1.0, -1.0, new Color(1.0, 1.0, 1.0, 1.0)),
-                    new Vertex(1.0, -1.0, -1.0, new Color(1.0, 1.0, 1.0, 1.0)),
-                    new Vertex(1.0, -1.0,  1.0, new Color(1.0, 1.0, 1.0, 1.0)),
-                    new Vertex(-1.0, -1.0,  1.0, new Color(1.0, 1.0, 1.0, 1.0)),
-
-                    new Vertex(1.0, -1.0, -1.0, new Color(1.0, 1.0, 0.0, 1.0)),
-                    new Vertex(1.0,  1.0, -1.0, new Color(1.0, 1.0, 0.0, 1.0)),
-                    new Vertex(1.0,  1.0,  1.0, new Color(1.0, 1.0, 0.0, 1.0)),
-                    new Vertex(1.0, -1.0,  1.0, new Color(1.0, 1.0, 0.0, 1.0)),
-
-                    new Vertex(-1.0, -1.0, -1.0, new Color(0.0, 1.0, 1.0, 1.0)),
-                    new Vertex(-1.0, -1.0,  1.0, new Color(0.0, 1.0, 1.0, 1.0)),
-                    new Vertex(-1.0,  1.0,  1.0, new Color(0.0, 1.0, 1.0, 1.0)),
-                    new Vertex(-1.0,  1.0, -1.0, new Color(0.0, 1.0, 1.0, 1.0))*/
+                    new Vertex(0.0,  1.0,  1.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(0.0,  0.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)),
+                    new Vertex(1.0,  0.0,  1.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(1.0,  0.0,  0.0, new Color(1.0, 0.0, 0.0, 1.0)),
                 ],
+                0,
+                1
+            ),
+
+            new Figure(
+                new Position(1.5, -0.5, -5.0),
+                [
+                    new Vertex(1.0,  1.0,  1.0, new Color(0.0, 0.0, 1.0, 1.0)),
+                    new Vertex(1.0,  0.0,  0.0, new Color(0.0, 1.0, 0.0, 1.0)),
+                    new Vertex(1.0,  1.0,  0.0, new Color(0.0, 0.0, 1.0, 1.0)),
+                    new Vertex(0.0,  1.0,  0.0, new Color(0.0, 1.0, 0.0, 1.0)),
+                    new Vertex(0.0,  1.0,  1.0, new Color(0.0, 0.0, 1.0, 1.0)),
+                    new Vertex(0.0,  0.0,  1.0, new Color(0.0, 1.0, 0.0, 1.0)),
+                    new Vertex(1.0,  0.0,  1.0, new Color(0.0, 0.0, 1.0, 1.0)),
+                    new Vertex(1.0,  0.0,  0.0, new Color(0.0, 1.0, 0.0, 1.0)),
+                ],
+                0,
+                1
+            ),
+            // end cube
+
+            new Figure(
+                new Position(-3.0, -0.5, -5.0),
+                [
+                    new Vertex(0.0,  0.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)),
+                    new Vertex(1.0,  0.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)),
+                    new Vertex(0.0,  1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)),
+                    new Vertex(1.0,  1.0,  1.0, new Color(1.0, 0.0, 0.0, 1.0)),
+
+                    new Vertex(1.0,  1.0,  1.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(1.0,  1.0,  0.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(0.0,  1.0,  1.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(0.0,  1.0,  0.0, new Color(1.0, 1.0, 0.0, 1.0)),
+
+                    new Vertex(0.0,  1.0,  0.0, new Color(0.0, 1.0, 0.0, 1.0)),
+                    new Vertex(0.0,  1.0,  1.0, new Color(0.0, 1.0, 0.0, 1.0)),
+                    new Vertex(0.0,  0.0,  0.0, new Color(0.0, 1.0, 0.0, 1.0)),
+                    new Vertex(0.0,  0.0,  1.0, new Color(0.0, 1.0, 0.0, 1.0)),
+
+                    new Vertex(0.0,  0.0,  1.0, new Color(0.0, 1.0, 1.0, 1.0)),
+                    new Vertex(1.0,  0.0,  1.0, new Color(0.0, 1.0, 1.0, 1.0)),
+                    new Vertex(0.0,  0.0,  0.0, new Color(0.0, 1.0, 1.0, 1.0)),
+                    new Vertex(1.0,  0.0,  0.0, new Color(0.0, 1.0, 1.0, 1.0)),
+
+                    new Vertex(1.0,  0.0,  0.0, new Color(0.0, 0.0, 1.0, 1.0)),
+                    new Vertex(1.0,  0.0,  1.0, new Color(0.0, 0.0, 1.0, 1.0)),
+                    new Vertex(1.0,  1.0,  0.0, new Color(0.0, 0.0, 1.0, 1.0)),
+                    new Vertex(1.0,  1.0,  1.0, new Color(0.0, 0.0, 1.0, 1.0)),
+
+                    new Vertex(1.0,  1.0,  1.0, new Color(0.0, 0.0, 1.0, 1.0)),
+                    new Vertex(1.0,  1.0,  1.0, new Color(0.0, 0.0, 1.0, 1.0)),
+                    new Vertex(1.0,  1.0,  1.0, new Color(0.0, 0.0, 1.0, 1.0)),
+                ],
+                0,
                 0
             ),
 
@@ -122,7 +133,8 @@ let SHAPES_REPOSITORY = {
                     new Vertex(-1.0,  1.0,  1.0, new Color(0.0, 1.0, 0.0, 1.0)),
                     new Vertex(-1.0,  1.0, -1.0, new Color(0.0, 1.0, 1.0, 1.0))
                 ],
-                0
+                0,
+                1
             ),
 
             new Figure(
@@ -133,6 +145,7 @@ let SHAPES_REPOSITORY = {
                     new Vertex(1.1, -1.1,  -1.1, new Color(1.0, 1.0, 0.0, 1.0)),
                     new Vertex(-1.1, -1.1,  -1.1, new Color(1.0, 1.0, 1.0, 1.0))
                 ],
+                0,
                 0
             )
         ];

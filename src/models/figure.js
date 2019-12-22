@@ -6,13 +6,16 @@ class Figure {
      * Конструктор класса.
      * @param {Position} positionFromZero - позиция фигуры относительно нуля.
      * @param {Array<Vertex>} vertices - массив координат вершин.
+     * @param {number} angle - угол поворота фигуры.
+     * @param {DRAWING_TYPE} drawingType - тип отрисовки.
      */
-    constructor(positionFromZero, vertices, angle) {
+    constructor(positionFromZero, vertices, angle, drawingType) {
         this.positionFromZero = positionFromZero;
         this.vertices = vertices;
         this.vertexBuffer = undefined;
         this.colorBuffer = undefined;
         this.angle = UTILS.degToRad(angle);
+        this.drawingType = drawingType;
     }
 
     /**
@@ -48,8 +51,18 @@ class Figure {
         return this.vertices.length;
     }
 
+    /**
+     * Возвращает угол поворота фигуры.
+     */
     getAngle() {
         return this.angle;
+    }
+
+    /**
+     * Возвращает тип отрисовки фигуры.
+     */
+    getDrawingType() {
+        return this.drawingType;
     }
 
     /**
