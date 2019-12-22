@@ -18,6 +18,13 @@ let BUFFER_TYPE = {vertex : 0, color: 1};
 
 let DRAWING_TYPE = {STRIP: 0, FAN: 1};
 
+let mouseDown = false;
+let lastMouseX = null;
+let lastMouseY = null;
+
+let moonRotationMatrix = mat4.create();
+mat4.identity(moonRotationMatrix);
+
 /**
  * Драйвер WebGL.
  */
@@ -34,6 +41,10 @@ let WEBGL_DRIVER = {
         WEBGL_DRIVER._initShaders();
 
         this.resetScene();
+
+        canvas.onmousedown = onMouseDown;
+        document.onmouseup = onMouseUp;
+        document.onmousemove = onMouseMove;
     },
 
     resetScene() {
@@ -44,6 +55,8 @@ let WEBGL_DRIVER = {
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
         mat4.identity(mvMatrix);
+
+
     },
 
     /**
@@ -77,6 +90,7 @@ let WEBGL_DRIVER = {
         this._setCurrentPosition(figure.getPositionFromZero());
 
         this._mvMatrixPush();
+        mat4.multiply(mvMatrix, moonRotationMatrix);
         mat4.rotate(mvMatrix, UTILS.degToRad(figure.getAngle()), [0, 1, 0])
 
         this._setCurrentArrayBuffer(figure.getVertexBuffer());
@@ -270,3 +284,32 @@ let WEBGL_DRIVER = {
         mvMatrix = mvMatrixStack.pop();
     }
 }
+
+    function onMouseDown(event) {
+        mouseDown = true;
+        lastMouseX = event.clientX;
+        lastMouseY = event.clientY;
+    }
+
+    function onMouseUp(event) {
+        mouseDown = false;
+    }
+
+    function onMouseMove(event) {
+        if (!mouseDown) {
+            return;
+        }
+
+        let newX = event.clientX;
+        let newY = event.clientY;
+        let deltaX = newX - lastMouseX;
+
+        let newRotationMatrix = mat4.create();
+        mat4.identity(newRotationMatrix);
+        mat4.rotate(newRotationMatrix, UTILS.degToRad(deltaX / 10), [0, 1, 0]);
+        let deltaY = newY - lastMouseY;
+        mat4.rotate(newRotationMatrix, UTILS.degToRad(deltaY / 10), [1, 0, 0]);
+        mat4.multiply(newRotationMatrix, moonRotationMatrix, moonRotationMatrix);
+        lastMouseX = newX
+        lastMouseY = newY;
+    }
