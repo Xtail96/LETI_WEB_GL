@@ -25,6 +25,9 @@ let lastMouseY = null;
 let sceneRotationMatrix = mat4.create();
 mat4.identity(sceneRotationMatrix);
 
+// Позиция начала отрисовки
+let initialPosition = new Position(0, 0, -100);
+
 /**
  * Драйвер WebGL.
  */
@@ -85,11 +88,11 @@ let WEBGL_DRIVER = {
      * @param {Figure} figure - фигура.
      */
     drawFigure: function(figure) {
-        this._setCurrentPosition(figure.getPositionFromZero());
-
+        this._setCurrentPosition(initialPosition);
+        
         this._mvMatrixPush();
+        mat4.rotate(mvMatrix, UTILS.degToRad(figure.getAngle()), [0, 1, 0]);
         mat4.multiply(mvMatrix, sceneRotationMatrix);
-        mat4.rotate(mvMatrix, UTILS.degToRad(figure.getAngle()), [0, 1, 0])
 
         this._setCurrentArrayBuffer(figure.getVertexBuffer());
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, Position.size(), gl.FLOAT, false, 0, 0);

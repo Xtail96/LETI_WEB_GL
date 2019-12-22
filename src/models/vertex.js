@@ -7,8 +7,16 @@ class Vertex {
         this.color = color;
     }
 
+    getPosition() {
+        return this.position;
+    }
+
     getCoords() {
         return this.position.getCoords();
+    }
+
+    getColor() {
+        return this.color;
     }
 
     getColorCode() {
