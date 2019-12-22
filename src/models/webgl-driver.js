@@ -22,8 +22,8 @@ let mouseDown = false;
 let lastMouseX = null;
 let lastMouseY = null;
 
-let moonRotationMatrix = mat4.create();
-mat4.identity(moonRotationMatrix);
+let sceneRotationMatrix = mat4.create();
+mat4.identity(sceneRotationMatrix);
 
 /**
  * Драйвер WebGL.
@@ -42,9 +42,9 @@ let WEBGL_DRIVER = {
 
         this.resetScene();
 
-        canvas.onmousedown = onMouseDown;
-        document.onmouseup = onMouseUp;
-        document.onmousemove = onMouseMove;
+        canvas.onmousedown = WEBGL_DRIVER._onMouseDown;
+        document.onmouseup = WEBGL_DRIVER._onMouseUp;
+        document.onmousemove = WEBGL_DRIVER._onMouseMove;
     },
 
     resetScene() {
@@ -90,7 +90,7 @@ let WEBGL_DRIVER = {
         this._setCurrentPosition(figure.getPositionFromZero());
 
         this._mvMatrixPush();
-        mat4.multiply(mvMatrix, moonRotationMatrix);
+        mat4.multiply(mvMatrix, sceneRotationMatrix);
         mat4.rotate(mvMatrix, UTILS.degToRad(figure.getAngle()), [0, 1, 0])
 
         this._setCurrentArrayBuffer(figure.getVertexBuffer());
@@ -282,20 +282,20 @@ let WEBGL_DRIVER = {
             throw "Matrix stack is empty";
         }
         mvMatrix = mvMatrixStack.pop();
-    }
-}
+    },
 
-    function onMouseDown(event) {
+    _onMouseDown: function (event) {
         mouseDown = true;
         lastMouseX = event.clientX;
         lastMouseY = event.clientY;
-    }
+    },
 
-    function onMouseUp(event) {
+    _onMouseUp: function (event) {
         mouseDown = false;
-    }
+    },
 
-    function onMouseMove(event) {
+
+    _onMouseMove: function (event) {
         if (!mouseDown) {
             return;
         }
@@ -309,7 +309,8 @@ let WEBGL_DRIVER = {
         mat4.rotate(newRotationMatrix, UTILS.degToRad(deltaX / 10), [0, 1, 0]);
         let deltaY = newY - lastMouseY;
         mat4.rotate(newRotationMatrix, UTILS.degToRad(deltaY / 10), [1, 0, 0]);
-        mat4.multiply(newRotationMatrix, moonRotationMatrix, moonRotationMatrix);
+        mat4.multiply(newRotationMatrix, sceneRotationMatrix, sceneRotationMatrix);
         lastMouseX = newX
         lastMouseY = newY;
     }
+}
