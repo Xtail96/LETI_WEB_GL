@@ -18,6 +18,8 @@ let BUFFER_TYPE = {vertex : 0, color: 1};
 
 let DRAWING_TYPE = {STRIP: 0, FAN: 1};
 
+let COORDINATE_AXISES = {X: 0, Y: 1, Z: 2};
+
 let mouseDown = false;
 let lastMouseX = null;
 let lastMouseY = null;
@@ -51,7 +53,7 @@ let WEBGL_DRIVER = {
     },
 
     resetScene() {
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        gl.clearColor(1.0, 1.0, 1.0, 1.0);
         gl.enable(gl.DEPTH_TEST);
 
         gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
@@ -91,7 +93,6 @@ let WEBGL_DRIVER = {
         this._setCurrentPosition(initialPosition);
         
         this._mvMatrixPush();
-        mat4.rotate(mvMatrix, UTILS.degToRad(figure.getAngle()), [0, 1, 0]);
         mat4.multiply(mvMatrix, sceneRotationMatrix);
 
         this._setCurrentArrayBuffer(figure.getVertexBuffer());

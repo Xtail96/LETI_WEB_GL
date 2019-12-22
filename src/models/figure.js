@@ -6,11 +6,13 @@ class Figure {
      * Конструктор класса.
      * @param {Position} positionFromZero - позиция фигуры относительно нуля.
      * @param {Array<Vertex>} vertices - массив координат вершин.
-     * @param {number} angle - угол поворота фигуры.
      * @param {DRAWING_TYPE} drawingType - тип отрисовки.
+     * @param {number} angle - угол поворота фигуры.
+     * @param {COORDINATE_AXISES} rotationAxis - ось вдоль которой требуется осуществить поворот.
      */
-    constructor(positionFromZero, vertices, angle, drawingType) {
-        this.vertices = Figure.moveTo(vertices, positionFromZero);
+    constructor(positionFromZero, vertices, drawingType, angle, rotationAxis) {
+        this.vertices = Figure.rotate(vertices, UTILS.degToRad(angle), rotationAxis);
+        this.vertices = Figure.moveTo(this.vertices, positionFromZero);
         this.vertexBuffer = undefined;
         this.colorBuffer = undefined;
         this.angle = UTILS.degToRad(angle);
@@ -98,6 +100,50 @@ class Figure {
                 coords.getX() + position.getX(),
                 coords.getY() + position.getY(),
                 coords.getZ() + position.getZ(),
+                vertex.getColor()
+            ));
+        }
+
+        return result;
+    }
+
+    static rotate(vertices, angle, rotationAxis) {
+        let result = [];
+
+        for(let vertex of vertices) {
+            let coords = vertex.getPosition();
+            let newCoords = {};
+
+            switch(rotationAxis) {
+                case COORDINATE_AXISES.X:
+                    newCoords = new Position(
+                        coords.getX(),
+                        coords.getY() * Math.cos(angle) - coords.getZ() * Math.sin(angle),
+                        coords.getY() * Math.sin(angle) + coords.getZ() * Math.cos(angle)
+                    );
+                    break;
+                case COORDINATE_AXISES.Y:
+                    newCoords = new Position(
+                        coords.getX() * Math.cos(angle) - coords.getZ() * Math.sin(angle),
+                        coords.getY(),
+                        coords.getX() * Math.sin(angle) + coords.getZ() * Math.cos(angle)
+                    );
+                    break;
+                case COORDINATE_AXISES.Z:
+                    newCoords = new Position(
+                        coords.getX() * Math.cos(angle) - coords.getY() * Math.sin(angle),
+                        coords.getX() * Math.sin(angle) + coords.getY() * Math.cos(angle),
+                        coords.getZ(),
+                    );
+                    break;
+                default:
+                    newCoords = coords;
+            }
+
+            result.push(new Vertex(
+                newCoords.getX(),
+                newCoords.getY(),
+                newCoords.getZ(),
                 vertex.getColor()
             ));
         }

@@ -7,16 +7,15 @@ let SHAPES_REPOSITORY = {
     init: function() {
         SHAPES_REPOSITORY.data = [
             // begin board
-            ...Parallelepiped.build(new Position(0, 0, 0), 50, 5, 50, 0, new Color(1, 1, 1, 1)),
+            ...Parallelepiped.build(new Position(0, 0, 0), 50, 5, 50, new Color(0, 0, 0, 1)),
             // end board
 
             // begin cubes
-            ...Cube.build(new Position(20, 5, 0.0), 5, 0, new Color(1.0, 0.0, 0.0, 1.0)),
-            ...Cube.build(new Position(20, 9, 0.0), 3, 60, new Color(0.0, 0.0, 1.0, 1.0)),
-            ...Cube.build(new Position(-20, 4.0, 15.0), 3, 60, new Color(0.0, 1.0, 0.0, 1.0)),
+            ...Cube.build(new Position(20, 5, 0.0), 5, new Color(1.0, 0.0, 0.0, 1.0)),
+            ...Cube.build(new Position(20, 9, 0.0), 3, new Color(0.0, 0.0, 1.0, 1.0), 60, COORDINATE_AXISES.Y),
+            ...Cube.build(new Position(-20, 4.0, 15.0), 3, new Color(0.0, 1.0, 0.0, 1.0), 30, COORDINATE_AXISES.X),
+            ...Cube.build(new Position(-10, 4.0, 15.0), 3, new Color(0.0, 1.0, 0.0, 1.0), 120, COORDINATE_AXISES.Z),
             // end cubes
-
-
 
 
             /*new Figure(

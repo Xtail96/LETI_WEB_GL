@@ -1,5 +1,5 @@
 class Parallelepiped {
-    static build(position, sizeX, sizeY, sizeZ, angle, color) {
+    static build(position, sizeX, sizeY, sizeZ, color, angle = 0, rotationAxis = COORDINATE_AXISES.Y) {
         return [
             new Figure(position,
                 [
@@ -13,8 +13,9 @@ class Parallelepiped {
                     new Vertex(sizeX/2,  -sizeY/2,  sizeZ/2, color),
                     new Vertex(sizeX/2,  -sizeY/2,  -sizeZ/2, color),
                 ],
+                DRAWING_TYPE.FAN,
                 angle,
-                DRAWING_TYPE.FAN
+                rotationAxis
             ),
 
             new Figure(position,
@@ -28,8 +29,9 @@ class Parallelepiped {
                     new Vertex(sizeX/2,  -sizeY/2,  sizeZ/2, color),
                     new Vertex(sizeX/2,  -sizeY/2,  -sizeZ/2, color),
                 ],
+                DRAWING_TYPE.FAN,
                 angle,
-                DRAWING_TYPE.FAN
+                rotationAxis
             ),
         ]
     }
