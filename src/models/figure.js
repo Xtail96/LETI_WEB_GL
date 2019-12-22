@@ -10,20 +10,11 @@ class Figure {
      * @param {DRAWING_TYPE} drawingType - тип отрисовки.
      */
     constructor(positionFromZero, vertices, angle, drawingType) {
-        this.positionFromZero = positionFromZero;
         this.vertices = Figure.moveTo(vertices, positionFromZero);
         this.vertexBuffer = undefined;
         this.colorBuffer = undefined;
         this.angle = UTILS.degToRad(angle);
         this.drawingType = drawingType;
-    }
-
-    /**
-     * Возвращает координаты фигуры относительно нуля.
-     * @returns Position.
-     */
-    getPositionFromZero() {
-        return this.positionFromZero;
     }
 
     /**
@@ -103,16 +94,12 @@ class Figure {
         for(let vertex of vertices) {
             let coords = vertex.getPosition();
 
-            console.log(coords, position)
-
             result.push(new Vertex(
                 coords.getX() + position.getX(),
                 coords.getY() + position.getY(),
                 coords.getZ() + position.getZ(),
                 vertex.getColor()
             ));
-
-            console.log(result);
         }
 
         return result;
