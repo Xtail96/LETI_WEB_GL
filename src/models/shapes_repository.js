@@ -6,7 +6,46 @@ let SHAPES_REPOSITORY = {
 
     init: function() {
         SHAPES_REPOSITORY.data = [
+            // begin board
             new Figure(
+                new Position(0.0, 0.0, -100.0),
+                [
+                    new Vertex(-25.0,  0.0,  -25.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(25.0,  0.0,  -25.0, new Color(1.0, 1.0, 1.0, 1.0)),
+                    new Vertex(25.0,  5.0,  -25.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(-25.0,  5.0,  -25.0, new Color(1.0, 1.0, 1.0, 1.0)),
+
+                    new Vertex(-25.0,  5.0,  25.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(-25.0,  0.0,  25.0, new Color(1.0, 1.0, 1.0, 1.0)),
+                    new Vertex(25.0,  0.0,  25.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(25.0,  0.0,  -25.0, new Color(1.0, 1.0, 1.0, 1.0)),
+                ],
+                0,
+                1
+            ),
+
+            new Figure(
+                new Position(0.0, 0.0, -100.0),
+                [
+                    new Vertex(25.0,  5.0,  25.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(25.0,  0.0,  -25.0, new Color(1.0, 1.0, 1.0, 1.0)),
+                    new Vertex(25.0,  5.0,  -25.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(-25.0,  5.0,  -25.0, new Color(1.0, 1.0, 1.0, 1.0)),
+
+                    new Vertex(-25.0,  5.0,  25.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(-25.0,  0.0,  25.0, new Color(1.0, 1.0, 1.0, 1.0)),
+                    new Vertex(25.0,  0.0,  25.0, new Color(1.0, 1.0, 0.0, 1.0)),
+                    new Vertex(25.0,  0.0,  -25.0, new Color(1.0, 1.0, 1.0, 1.0)),
+                ],
+                0,
+                1
+            ),
+            // end board
+
+
+
+
+            /*new Figure(
                 new Position(-1.5, 1.0, -7.0),
                 [
                     new Vertex(0.0,  1.0,  0.0, new Color(1.0, 0.0, 0.0, 1.0)),
@@ -147,7 +186,7 @@ let SHAPES_REPOSITORY = {
                 ],
                 0,
                 0
-            )
+            )*/
         ];
     }
 }
