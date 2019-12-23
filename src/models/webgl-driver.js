@@ -89,16 +89,16 @@ let WEBGL_DRIVER = {
      * Рисует фигуру на холсте.
      * @param {Figure} figure - фигура.
      */
-    drawFigure: function(figure) {
+    drawFigure: function(figure, verticesBuffer, colorBuffer) {
         this._setCurrentPosition(initialPosition);
         
         this._mvMatrixPush();
         mat4.multiply(mvMatrix, sceneRotationMatrix);
 
-        this._setCurrentArrayBuffer(figure.getVertexBuffer());
+        this._setCurrentArrayBuffer(verticesBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, Position.size(), gl.FLOAT, false, 0, 0);
         
-        this._setCurrentArrayBuffer(figure.getColorBuffer());
+        this._setCurrentArrayBuffer(colorBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, Color.size(), gl.FLOAT, false, 0, 0);
         
         this._setMatrixUniforms();

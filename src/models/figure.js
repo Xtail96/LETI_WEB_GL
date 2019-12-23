@@ -13,8 +13,6 @@ class Figure {
     constructor(positionFromZero, vertices, drawingType, angle, rotationAxis) {
         this.vertices = Figure.rotate(vertices, UTILS.degToRad(angle), rotationAxis);
         this.vertices = Figure.moveTo(this.vertices, positionFromZero);
-        this.vertexBuffer = undefined;
-        this.colorBuffer = undefined;
         this.angle = UTILS.degToRad(angle);
         this.drawingType = drawingType;
     }
@@ -24,17 +22,6 @@ class Figure {
      */
     getVertices() {
         return this.vertices;
-    }
- 
-    /**
-     * Возвращает вершинный буфер фигуры - место в памяти видеокарты.
-     */
-    getVertexBuffer() {
-        return this.vertexBuffer;
-    }
-
-    getColorBuffer() {
-        return this.colorBuffer;
     }
 
     /**
@@ -62,9 +49,9 @@ class Figure {
      * Рисует фигуру на холсте, который использует драйвер.
      */
     draw() {
-        this.vertexBuffer = WEBGL_DRIVER.initBuffer(this.vertices, BUFFER_TYPE.vertex);
-        this.colorBuffer = WEBGL_DRIVER.initBuffer(this.vertices, BUFFER_TYPE.color);
-        WEBGL_DRIVER.drawFigure(this);
+        let vertexBuffer = WEBGL_DRIVER.initBuffer(this.vertices, BUFFER_TYPE.vertex);
+        let colorBuffer = WEBGL_DRIVER.initBuffer(this.vertices, BUFFER_TYPE.color);
+        WEBGL_DRIVER.drawFigure(this, vertexBuffer, colorBuffer);
     }
 
     /**
