@@ -14,9 +14,9 @@ let pMatrix = mat4.create();
 // Временный буфер.
 let tmpBuffer = undefined;
 
-let BUFFER_TYPE = {vertex : 0, color: 1};
+let BUFFER_TYPE = {vertex : 0, color: 1, texture: 2, index: 3, normal: 4};
 
-let DRAWING_TYPE = {STRIP: 0, FAN: 1};
+let DRAWING_TYPE = {STRIP: 0, FAN: 1, TRIANGLES: 2};
 
 let COORDINATE_AXISES = {X: 0, Y: 1, Z: 2};
 
@@ -109,6 +109,9 @@ let WEBGL_DRIVER = {
                 break;
             case DRAWING_TYPE.FAN:
                 gl.drawArrays(gl.TRIANGLE_FAN, 0, figure.getVerticesCount());
+                break;
+            case DRAWING_TYPE.TRIANGLES:
+                gl.drawArrays(gl.TRIANGLES, 0, figure.getVerticesCount());
                 break;
         }
         

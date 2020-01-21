@@ -10,9 +10,12 @@ class Figure {
      * @param {number} angle - угол поворота фигуры.
      * @param {COORDINATE_AXISES} rotationAxis - ось вдоль которой требуется осуществить поворот.
      */
-    constructor(positionFromZero, vertices, drawingType, angle, rotationAxis) {
+    constructor(positionFromZero, vertices, /*normalMatrix, textureCoords, indexMatrix,*/ drawingType, angle, rotationAxis) {
         this.vertices = Figure.rotate(vertices, UTILS.degToRad(angle), rotationAxis);
         this.vertices = Figure.moveTo(this.vertices, positionFromZero);
+        //this.normalMatrix = normalMatrix;
+        //this.textureCoords = textureCoords;
+        //this.indexMatrix = indexMatrix;
         this.angle = UTILS.degToRad(angle);
         this.drawingType = drawingType;
     }
@@ -51,6 +54,10 @@ class Figure {
     draw() {
         let vertexBuffer = WEBGL_DRIVER.initBuffer(this.vertices, BUFFER_TYPE.vertex);
         let colorBuffer = WEBGL_DRIVER.initBuffer(this.vertices, BUFFER_TYPE.color);
+        //let textureBuffer = WEBGL_DRIVER.initBuffer(this.textureCoords, BUFFER_TYPE.texture);
+        //let indexBuffer = WEBGL_DRIVER.initBuffer(this.indices, BUFFER_TYPE.index);
+        //let normalBuffer = WEBGL_DRIVER.initBuffer(this.normales, BUFFER_TYPE.normal);
+
         WEBGL_DRIVER.drawFigure(this, vertexBuffer, colorBuffer);
     }
 
