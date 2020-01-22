@@ -130,12 +130,12 @@ function main() {
 
         // ------ Draw the plane --------
         drawFigure(programInfo, planeBufferInfo,
-            {
-                u_colorMult: [1, 1, 1, 1],
-                u_color: [1, 0, 0, 1],
-                u_texture: checkerboardTexture,
-                u_world: m4.translation(0, 0, 0),
-            });
+        {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: checkerboardTexture,
+            u_world: m4.translation(0, 0, 0),
+        });
 
         // ------ Draw the cube --------
         drawFigure(programInfo, cubeBufferInfo, {
@@ -175,58 +175,6 @@ function main() {
 
     }
 
-    function drawNets(
-        projectionMatrix,
-        cameraMatrix,
-        textureMatrix,
-        lightWorldMatrix,
-        programInfo) {
-        // Make a view matrix from the camera matrix.
-        const viewMatrix = m4.inverse(cameraMatrix);
-
-        gl.useProgram(programInfo.program);
-
-        // set uniforms
-        webglUtils.setUniforms(programInfo, {
-            u_view: viewMatrix,
-            u_projection: projectionMatrix,
-            u_bias: settings.bias,
-            u_textureMatrix: textureMatrix,
-            u_projectedTexture: depthTexture,
-            u_reverseLightDirection: lightWorldMatrix.slice(8, 11),
-        });
-
-        // ------ Draw net --------------
-        gl.lineWidth(3);
-        drawFigure(programInfo, netBufferInfo, {
-            u_color: [66 / 255, 1 / 255, 22 / 255, 255 / 255],
-            u_world: m4.scale(m4.translation(5, 2.5, 5.5), 5, 5, 1),
-        }, gl.LINES);
-
-        // ---------- Green NetCylinder -----------
-        drawFigure(programInfo, greenNetCylinderCirclesBufferInfo, {
-            u_color: [59 / 255, 201 / 255, 2 / 255, 1],
-            u_world: m4.scale(m4.translation(-3, 1, -2), 2, 3, 2),
-        }, gl.LINE_STRIP);
-        drawFigure(programInfo, greenNetCylinderLinesBufferInfo, {
-            u_color: [59 / 255, 201 / 255, 2 / 255, 1],
-            u_world: m4.scale(m4.translation(-3, 1, -2), 2, 3, 2),
-        }, gl.LINES);
-
-        // ---------- Blue NetCylinder -----------
-        gl.lineWidth(1);
-        drawFigure(programInfo, blueNetCylinderCirclesBufferInfo, {
-            u_color: [0.0, 0.5, 1.0, 1.0],
-            u_world: m4.scale(m4.translation(-3, 4, -2), 2, 3, 2),
-        }, gl.LINE_STRIP);
-
-        drawFigure(programInfo, blueNetCylinderLinesBufferInfo, {
-            u_color: [0.0, 0.5, 1.0, 1.0],
-            u_world: m4.scale(m4.translation(-3, 4, -2), 2, 3, 2),
-        }, gl.LINES);
-
-    }
-
     // Draw the scene.
     function render() {
         webglUtils.resizeCanvasToDisplaySize(gl.canvas);
@@ -261,11 +209,11 @@ function main() {
             lightWorldMatrix,
             colorProgramInfo);
 
-        drawNets(lightProjectionMatrix,
+        /*drawNets(lightProjectionMatrix,
             lightWorldMatrix,
             m4.identity(),
             lightWorldMatrix,
-            colorProgramInfo);
+            colorProgramInfo);*/
 
         // now draw scene to the canvas projecting the depth texture into the scene
         gl.bindFramebuffer(gl.FRAMEBUFFER, null);
