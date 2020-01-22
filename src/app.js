@@ -4,10 +4,10 @@ function main() {
     // Get A WebGL context
     /** @type {HTMLCanvasElement} */
     const canvas = document.getElementById('canvas');
+    if(canvas == null) return;
+
     const gl = canvas.getContext('webgl');
-    if (!gl) {
-        return;
-    }
+    if (!gl) return;
 
     const ext = gl.getExtension('WEBGL_depth_texture');
     if (!ext) {
@@ -58,7 +58,7 @@ function main() {
 
     // ------------------------------TEXTURES--------------------------------------
     //Init my textures
-    const strangeTexture = initTexture('resources/textures/strangeTexture.png');
+    const sampleTexture = initTexture('resources/textures/wood.jpg');
     // Init a 8x8 checkerboard texture
     const checkerboardTexture = createChessBoardTexture();
     // Init depth texture
@@ -141,7 +141,7 @@ function main() {
         drawFigure(programInfo, cubeBufferInfo, {
             u_colorMult: [1, 1, 1, 1],
             u_color: [1, 0, 0, 1],
-            u_texture: strangeTexture,
+            u_texture: sampleTexture,
             u_world: m4.scale(m4.translation(-3, 1, 5), 2, 0.5, 2),
         });
 
@@ -149,13 +149,13 @@ function main() {
         drawFigure(programInfo, cubeBufferInfo, {
             u_colorMult: [1, 1, 1, 1],
             u_color: [1, 0, 0, 1],
-            u_texture: strangeTexture,
+            u_texture: sampleTexture,
             u_world: m4.scale(m4.translation(3, 4.5, -1), 2, 1.2, 2),
         });
         drawFigure(programInfo, cylinderBufferInfo, {
             u_colorMult: [1, 1, 1, 1],
             u_color: [1, 0, 0, 1],
-            u_texture: strangeTexture,
+            u_texture: sampleTexture,
             u_world: m4.scale(m4.translation(3, 2, -1), 1.8, 3.5, 1.8)
         });
     }
@@ -250,12 +250,6 @@ function main() {
             textureMatrix,
             lightWorldMatrix,
             textureProgramInfo);
-        drawNets(
-            projectionMatrix,
-            cameraMatrix,
-            textureMatrix,
-            lightWorldMatrix,
-            colorProgramInfo);
     }
 
     function initTexture(url) {
@@ -341,6 +335,8 @@ function main() {
     }
 
     render();
-}
 
-main();
+    setTimeout(() => {
+        render();
+    }, 100);
+}
