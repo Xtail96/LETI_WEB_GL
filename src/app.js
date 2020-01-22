@@ -58,7 +58,7 @@ function main() {
 
     // ------------------------------TEXTURES--------------------------------------
     //Init my textures
-    const strangeTexture = initTexture('sources/textures/strangeTexture.png');
+    const strangeTexture = initTexture('resources/textures/strangeTexture.png');
     // Init a 8x8 checkerboard texture
     const checkerboardTexture = createChessBoardTexture();
     // Init depth texture
