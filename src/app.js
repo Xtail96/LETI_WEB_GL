@@ -60,7 +60,7 @@ function main() {
     //Init my textures
     const sampleTexture = initTexture('resources/textures/wood.jpg');
     // Init a 8x8 checkerboard texture
-    const checkerboardTexture = createChessBoardTexture();
+    const chessboardTexture = initTexture('resources/textures/chess_board_3.jpg');
     // Init depth texture
     const depthTextureSize = 512;
     const depthTexture = createDepthTexture();
@@ -82,7 +82,7 @@ function main() {
         posZ: 7,
         targetX: 3.5,
         targetY: 0,
-        targetZ: 0.6,
+        targetZ: 5.0,
         projWidth: 20,
         projHeight: 15,
         fieldOfView: 120,
@@ -133,7 +133,7 @@ function main() {
         {
             u_colorMult: [1, 1, 1, 1],
             u_color: [1, 0, 0, 1],
-            u_texture: checkerboardTexture,
+            u_texture: chessboardTexture,
             u_world: m4.translation(0, 0, 0),
         });
 
@@ -143,6 +143,13 @@ function main() {
             u_color: [1, 0, 0, 1],
             u_texture: sampleTexture,
             u_world: m4.scale(m4.translation(-3, 1, 5), 2, 0.5, 2),
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: sampleTexture,
+            u_world: m4.scale(m4.translation(-3, 2, -5), 2, 2, 2),
         });
 
         // ------ Draw the strange thing-cube-cylinder ---
@@ -299,14 +306,14 @@ function main() {
             gl.LUMINANCE,     // format
             gl.UNSIGNED_BYTE, // type
             new Uint8Array([  // data
-                0xFF, 0xCC, 0xFF, 0xCC, 0xFF, 0xCC, 0xFF, 0xCC,
-                0xCC, 0xFF, 0xCC, 0xFF, 0xCC, 0xFF, 0xCC, 0xFF,
-                0xFF, 0xCC, 0xFF, 0xCC, 0xFF, 0xCC, 0xFF, 0xCC,
-                0xCC, 0xFF, 0xCC, 0xFF, 0xCC, 0xFF, 0xCC, 0xFF,
-                0xFF, 0xCC, 0xFF, 0xCC, 0xFF, 0xCC, 0xFF, 0xCC,
-                0xCC, 0xFF, 0xCC, 0xFF, 0xCC, 0xFF, 0xCC, 0xFF,
-                0xFF, 0xCC, 0xFF, 0xCC, 0xFF, 0xCC, 0xFF, 0xCC,
-                0xCC, 0xFF, 0xCC, 0xFF, 0xCC, 0xFF, 0xCC, 0xFF,
+                0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00,
+                0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF,
+                0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00,
+                0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF,
+                0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00,
+                0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF,
+                0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00,
+                0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF,
             ]));
         gl.generateMipmap(gl.TEXTURE_2D);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
