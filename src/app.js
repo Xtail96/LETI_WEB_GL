@@ -58,7 +58,9 @@ function main() {
 
     // ------------------------------TEXTURES--------------------------------------
     //Init my textures
-    const sampleTexture = initTexture('resources/textures/wood.jpg');
+    const woodTexture1 = initTexture('resources/textures/wood_1.jpg');
+    const woodTexture2 = initTexture('resources/textures/wood_2.jpg');
+    const blackWoodTexture = initTexture('resources/textures/black_wood_1.jpg');
     // Init a 8x8 checkerboard texture
     const chessboardTexture = initTexture('resources/textures/chess_board_3.jpg');
     // Init depth texture
@@ -136,19 +138,25 @@ function main() {
             u_texture: chessboardTexture,
             u_world: m4.translation(0, 0, 0),
         });
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: woodTexture2,
+            u_world: m4.scale(m4.translation(0, -1.0, 0), 12.5, 1, 12.5),
+        });
 
         // ------ Draw the cube --------
         drawFigure(programInfo, cubeBufferInfo, {
             u_colorMult: [1, 1, 1, 1],
             u_color: [1, 0, 0, 1],
-            u_texture: sampleTexture,
+            u_texture: blackWoodTexture,
             u_world: m4.scale(m4.translation(-3, 1, 5), 2, 0.5, 2),
         });
 
         drawFigure(programInfo, cubeBufferInfo, {
             u_colorMult: [1, 1, 1, 1],
             u_color: [1, 0, 0, 1],
-            u_texture: sampleTexture,
+            u_texture: woodTexture2,
             u_world: m4.scale(m4.translation(-3, 2, -5), 2, 2, 2),
         });
 
@@ -156,13 +164,13 @@ function main() {
         drawFigure(programInfo, cubeBufferInfo, {
             u_colorMult: [1, 1, 1, 1],
             u_color: [1, 0, 0, 1],
-            u_texture: sampleTexture,
+            u_texture: woodTexture1,
             u_world: m4.scale(m4.translation(3, 4.5, -1), 2, 1.2, 2),
         });
         drawFigure(programInfo, cylinderBufferInfo, {
             u_colorMult: [1, 1, 1, 1],
             u_color: [1, 0, 0, 1],
-            u_texture: sampleTexture,
+            u_texture: woodTexture1,
             u_world: m4.scale(m4.translation(3, 2, -1), 1.8, 3.5, 1.8)
         });
     }
