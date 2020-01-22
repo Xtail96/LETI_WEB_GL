@@ -29,32 +29,17 @@ function main() {
         gl,
         2,  // size
     );
-
-    const cylinderBufferInfo = primitives.createTruncatedConeBufferInfo(
+    
+    const sphereBufferInfo = primitives.createSphereBufferInfo(
         gl,
         1,
-        1,
-        1,
         100,
-        2
+        100,
+        degToRad(0),
+        degToRad(360),
+        degToRad(0),
+        degToRad(360)
     );
-
-    // Init buffers for not standard figures
-    const netBufferInfo = initBufferInfo(new Net(11));//поправить для четных/нечетных
-    const blueNetCylinderLinesBufferInfo = initBufferInfo(new NetCylinder(0, 40));
-    const blueNetCylinderCirclesBufferInfo = initBufferInfo(new NetCylinder(6, 0));
-    const greenNetCylinderLinesBufferInfo = initBufferInfo(new NetCylinder(0, 15));
-    const greenNetCylinderCirclesBufferInfo = initBufferInfo(new NetCylinder(4, 0));
-
-    function initBufferInfo(figure) {
-        figure.generateBufferInfo();
-        return webglUtils.createBufferInfoFromArrays(gl, {
-            position: figure.vertices,
-            indices: figure.indices,
-            normals: figure.normals,
-            texCoords: figure.textureCoords
-        });
-    }
 
     // ------------------------------TEXTURES--------------------------------------
     //Init my textures
@@ -257,35 +242,20 @@ function main() {
             u_texture: woodTexture2,
             u_world: m4.scale(m4.axisRotate(m4.translation(-4.0, 1, 1.5), [0, 1, 0], degToRad(-45)), 0.25, 1, 1)
         });
-        
-        
-        /*drawFigure(programInfo, cubeBufferInfo, {
-            u_colorMult: [1, 1, 1, 1],
-            u_color: [1, 0, 0, 1],
-            u_texture: blackWoodTexture,
-            u_world: m4.scale(m4.translation(-3, 1, 5), 2, 0.5, 2),
-        });
 
-        drawFigure(programInfo, cubeBufferInfo, {
+        drawFigure(programInfo, sphereBufferInfo, {
             u_colorMult: [1, 1, 1, 1],
             u_color: [1, 0, 0, 1],
             u_texture: woodTexture2,
-            u_world: m4.scale(m4.translation(-3, 2, -5), 2, 2, 2),
-        });*/
-
-        // ------ Draw the strange thing-cube-cylinder ---
-        /*drawFigure(programInfo, cubeBufferInfo, {
-            u_colorMult: [1, 1, 1, 1],
-            u_color: [1, 0, 0, 1],
-            u_texture: woodTexture1,
-            u_world: m4.scale(m4.translation(3, 4.5, -1), 2, 1.2, 2),
+            u_world: m4.scale(m4.translation(1.25, 3, 1.25), 1, 1, 1)
         });
-        drawFigure(programInfo, cylinderBufferInfo, {
+
+        drawFigure(programInfo, sphereBufferInfo, {
             u_colorMult: [1, 1, 1, 1],
             u_color: [1, 0, 0, 1],
-            u_texture: woodTexture1,
-            u_world: m4.scale(m4.translation(3, 2, -1), 1.8, 3.5, 1.8)
-        });*/
+            u_texture: blackWoodTexture,
+            u_world: m4.scale(m4.translation(-6.5, 3, -1.25), 1, 1, 1)
+        });
     }
 
     function drawFigure(program, figureBuffer, figureUniform, primitive) {
