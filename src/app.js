@@ -77,11 +77,11 @@ function main() {
 
     // ------------------------------UI--------------------------------------
     const settings = {
-        cameraX: -9.5,
-        cameraY: 12,
+        cameraX: -0.26,//-9.5,
+        cameraY: 20,//12,
         posX: 1.0,
         posY: 4.8,
-        posZ: 7,
+        posZ: 5.72,
         targetX: 3.5,
         targetY: 0,
         targetZ: 5.0,
@@ -145,8 +145,121 @@ function main() {
             u_world: m4.scale(m4.translation(0, -1.0, 0), 12.5, 1, 12.5),
         });
 
-        // ------ Draw the cube --------
+        // ------ Draw the cubes --------
         drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: woodTexture2,
+            u_world: m4.scale(m4.translation(1.25, 1, 9.25), 1, 1, 1),
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: woodTexture2,
+            u_world: m4.axisRotate(m4.scale(m4.translation(1.25, 2.75, 9.25), 0.75, 0.75, 0.75), [0, 1, 0], degToRad(45))
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: woodTexture2,
+            u_world: m4.scale(m4.translation(-6.75, 1, 9.25), 1, 1, 1),
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: woodTexture2,
+            u_world: m4.scale(m4.translation(-1.25, 0.75, -1.25), 0.75, 0.75, 0.75)
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: blackWoodTexture,
+            u_world: m4.scale(m4.translation(-1.25, 1, -6.5), 1, 1, 1),
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: blackWoodTexture,
+            u_world: m4.scale(m4.translation(1.25, 0.75, -6.5), 0.75, 0.75, 0.75),
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: blackWoodTexture,
+            u_world: m4.scale(m4.translation(1.25, 1, -9.25), 1, 1, 1),
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: blackWoodTexture,
+            u_world: m4.axisRotate(m4.scale(m4.translation(1.25, 2.75, -9.25), 0.75, 0.75, 0.75), [0, 1, 0], degToRad(45))
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: woodTexture2,
+            u_world: m4.scale(m4.translation(1.25, 1, 1.25), 1, 1, 1)
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: woodTexture2,
+            u_world: m4.axisRotate(m4.scale(m4.translation(3.75, 0.75, 3.75), 0.75, 0.75, 0.75), [0, 1, 0], degToRad(45))
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: blackWoodTexture,
+            u_world: m4.scale(m4.translation(3.75, 1, -3.75), 1, 1, 1)
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: blackWoodTexture,
+            u_world: m4.scale(m4.translation(-6.5, 1, 4), 1, 1, 1)
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: blackWoodTexture,
+            u_world: m4.scale(m4.translation(-7.0, 1, 1.5), 0.5, 1, 1)
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: blackWoodTexture,
+            u_world: m4.scale(m4.translation(-6.5, 1, -1.25), 1, 1, 1)
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: woodTexture2,
+            u_world: m4.scale(m4.axisRotate(m4.translation(-4.0, 1, 1.5), [0, 1, 0], degToRad(45)), 0.25, 1, 1)
+        });
+
+        drawFigure(programInfo, cubeBufferInfo, {
+            u_colorMult: [1, 1, 1, 1],
+            u_color: [1, 0, 0, 1],
+            u_texture: woodTexture2,
+            u_world: m4.scale(m4.axisRotate(m4.translation(-4.0, 1, 1.5), [0, 1, 0], degToRad(-45)), 0.25, 1, 1)
+        });
+        
+        
+        /*drawFigure(programInfo, cubeBufferInfo, {
             u_colorMult: [1, 1, 1, 1],
             u_color: [1, 0, 0, 1],
             u_texture: blackWoodTexture,
@@ -158,10 +271,10 @@ function main() {
             u_color: [1, 0, 0, 1],
             u_texture: woodTexture2,
             u_world: m4.scale(m4.translation(-3, 2, -5), 2, 2, 2),
-        });
+        });*/
 
         // ------ Draw the strange thing-cube-cylinder ---
-        drawFigure(programInfo, cubeBufferInfo, {
+        /*drawFigure(programInfo, cubeBufferInfo, {
             u_colorMult: [1, 1, 1, 1],
             u_color: [1, 0, 0, 1],
             u_texture: woodTexture1,
@@ -172,7 +285,7 @@ function main() {
             u_color: [1, 0, 0, 1],
             u_texture: woodTexture1,
             u_world: m4.scale(m4.translation(3, 2, -1), 1.8, 3.5, 1.8)
-        });
+        });*/
     }
 
     function drawFigure(program, figureBuffer, figureUniform, primitive) {
