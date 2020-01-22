@@ -307,12 +307,6 @@ function main() {
             lightWorldMatrix,
             colorProgramInfo);
 
-        /*drawNets(lightProjectionMatrix,
-            lightWorldMatrix,
-            m4.identity(),
-            lightWorldMatrix,
-            colorProgramInfo);*/
-
         // now draw scene to the canvas projecting the depth texture into the scene
         gl.bindFramebuffer(gl.FRAMEBUFFER, null);
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
