@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scenes\pr2\myCollision.cs" />
+     <Compile Include="Assets\Scenes\pr3\Ball.cs" />
+     <Compile Include="Assets\Scenes\pr3\Cubes.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>/Users/xtail/Projects/LETI/3d-graphics/LETI_WEB_GL/unity/pr1/Pr1/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
