@@ -270,7 +270,6 @@ function main() {
         } else {
             webglUtils.drawBufferInfo(gl, figureBuffer);
         }
-
     }
 
     // Draw the scene.
