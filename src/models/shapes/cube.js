@@ -1,9 +1,9 @@
 class Cube {
-    /*static build(position, size, color, angle = 0, rotationAxis = COORDINATE_AXISES.Y) {
-        return Parallelepiped.build(position, size, size, size, color, angle, rotationAxis);
-    }*/
-
     static build(position, size, color, angle = 0, rotationAxis = COORDINATE_AXISES.Y) {
+        return Parallelepiped.build(position, size, size, size, color, angle, rotationAxis);
+    }
+
+    /*static build(position, size, color, angle = 0, rotationAxis = COORDINATE_AXISES.Y) {
         return [
             new Figure(position,
                 [
@@ -43,9 +43,9 @@ class Cube {
                     new Vertex(-size/2, size/2, size/2, color),
                     new Vertex(-size/2, size/2, -size/2, color),
                 ],
-                DRAWING_TYPE.TRIANGLES,
+                DRAWING_TYPE.FAN,
                 angle,
                 rotationAxis)
         ]
-    }
+    }*/
 }
